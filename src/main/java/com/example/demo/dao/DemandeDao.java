@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DemandeDao extends JpaRepository<Demande, Long> {
-    Optional<Demande> findById(Long id);
+public interface DemandeDao extends JpaRepository<Demande, Integer> {
+    Optional<Demande> findById(int id);
 
-    void deleteById(Long id);
+    Demande save(Demande demande);
+
+    Demande deleteById(int id);
 
 }

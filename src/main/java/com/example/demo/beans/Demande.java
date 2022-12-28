@@ -3,6 +3,7 @@ package com.example.demo.beans;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +14,8 @@ import java.util.Date;
 public class Demande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private int id;
+    @DateTimeFormat(pattern = "yyyy-M-dd")
     private Date date;
     private String descriptionBesoin;
     @OneToOne
