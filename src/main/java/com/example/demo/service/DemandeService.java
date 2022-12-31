@@ -44,7 +44,7 @@ public class DemandeService {
         return demande;
     }
 
-    public Optional<Demande> findById(int id) {
+    public Demande findById(int id) {
         return demandeDao.findById(id);
     }
 
@@ -58,6 +58,21 @@ public class DemandeService {
         return demandeDao.findAll();
     }
 
+    public Demande updateDemande(int id,Demandedto demandedto) {
+        Demande demande = demandeDao.findById(id);
+        demande.setDate(demandedto.getDate());
+        demande.setDescriptionBesoin(demandedto.getDescriptionBesoin());
+        demandeDao.save(demande);
 
+        Etat etat = etatDao.findByDescription(demandedto.getEtat());
+        demande.setEtat(etat);
+
+        Type type = typeDao.findByTypeDemande(demandedto.getType());
+        demande.setType(type);
+
+        demandeDao.save(demande);
+
+        return demande;
+    }
 
 }

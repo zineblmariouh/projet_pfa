@@ -34,4 +34,8 @@ public class DemandeProvided {
         return demandeService.findAll();
     }
 
+    @PutMapping("/user/edit/demande/{id}")
+    public Demande updateDemande(@PathVariable int id,@RequestBody Demandedto demandedto) {
+        return demandeService.updateDemande(id,demandedto);
+    }
 }
