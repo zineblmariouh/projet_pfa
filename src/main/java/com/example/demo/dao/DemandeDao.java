@@ -4,12 +4,13 @@ import com.example.demo.beans.Demande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 @Repository
-public interface DemandeDao extends JpaRepository<Demande, Long> {
-    Optional<Demande> findById(Long id);
+public interface DemandeDao extends JpaRepository<Demande, Integer> {
+    Demande findById(int id);
 
-    void deleteById(Long id);
+    Demande save(Demande demande);
+
+    Demande deleteById(int id);
 
 }

@@ -3,6 +3,8 @@ package com.example.demo.beans;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -18,7 +20,7 @@ public class User {
     private String userLastName;
     private String userPassword;
     private String tel;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
                     @JoinColumn(name = "USER_ID")
