@@ -16,8 +16,8 @@ public class Demande {
     private Long id;
     private Date date;
     private String descriptionBesoin;
-    @OneToOne
+    @ManyToOne
     private Etat etat;
-    @OneToOne
+    @ManyToOne
     private Type type;
 }

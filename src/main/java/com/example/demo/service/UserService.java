@@ -5,10 +5,13 @@ import com.example.demo.beans.User;
 import com.example.demo.dao.RoleDao;
 import com.example.demo.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -47,13 +50,19 @@ public class UserService {
     }
 
     public User registerNewUser(User user) {
-        Role role = roleDao.findById("utilisateur").get();
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(role);
-        user.setRole(userRoles);
-        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
 
-        return userDao.save(user);
+        if(!userDao.existsById(user.getUserName())){
+
+            Role role = roleDao.findById("utilisateur").get();
+            Set<Role> userRoles = new HashSet<>();
+            userRoles.add(role);
+            user.setRole(userRoles);
+            user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+            return userDao.save(user);
+
+        }
+
+        return null;
     }
 
     public String getEncodedPassword(String password) {

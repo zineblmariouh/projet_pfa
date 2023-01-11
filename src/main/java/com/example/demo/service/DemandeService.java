@@ -26,7 +26,7 @@ public class DemandeService {
 
     @Transactional
     public void deleteById(Long id) {
-        return demandeDao.deleteById(id);
+   //     return demandeDao.deleteById(id);
     }
 
     public List<Demande> findAll() {
